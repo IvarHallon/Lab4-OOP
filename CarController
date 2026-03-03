@@ -17,9 +17,7 @@ public class CarController implements ICarController {
     private final Workshop<Volvo240> volvo240Workshop = new Workshop<>(3);
     private final int workshopX = 300;
     private final int workshopY = 300;
-    private final CollisionSystem collisionsystem =
-            new CollisionSystem(workshopX, workshopY, volvo240Workshop, manager);
-    private final MovementSystem movementsystem = new MovementSystem();
+
     private final WorkshopCollisionSystem workshopCollisionSystem =
             new WorkshopCollisionSystem(workshopX, workshopY, 80.0, volvo240Workshop);
 
