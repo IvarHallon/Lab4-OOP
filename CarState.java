@@ -11,12 +11,6 @@ public interface CarState {
         car.coreBrake(amount);
     }
 
-    // Hjälp för statebyte (kan kallas från states)
-    default void store(AbstractCar car) {
-        car.setState(new StoredState(car));
-    }
+   
 
-    default void unstore(AbstractCar car) {
-        car.setState(new MovingState(car));
-    }
 }
