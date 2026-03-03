@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class CarView extends JFrame {
     private static final int X = 800;
@@ -87,12 +88,17 @@ public class CarView extends JFrame {
         addCarButton.addActionListener(e -> controller.addCarRandom());
         removeCarButton.addActionListener(e -> controller.removeCar());
 
-
         this.pack();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2,
                 dim.height / 2 - this.getSize().height / 2);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    // Controller kan pusha en färdig snapshot vid init.
+    public void updateSnapshot(List<CarDTO> snapshot) {
+        drawPanel.setSnapshot(snapshot);
+        drawPanel.repaint();
     }
 }
