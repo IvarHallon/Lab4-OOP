@@ -96,9 +96,6 @@ public class CarView extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    // Controller kan pusha en färdig snapshot vid init.
-    public void updateSnapshot(List<CarDTO> snapshot) {
-        drawPanel.setSnapshot(snapshot);
-        drawPanel.repaint();
-    }
+   
 }
+
