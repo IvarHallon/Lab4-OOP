@@ -56,4 +56,25 @@ public class DrawPanel extends JPanel {
         // Workshop
         g.drawImage(workshopImage, workshopPoint.x, workshopPoint.y, null);
     }
+
+    public void updateFromCars(List<AbstractCar> cars){
+        if(cars == null){
+            setSnapshot(Collections.emptyList());
+        } else {
+            var snap = cars.stream()
+                    .map(CarDTO::from)
+                    .toList();
+            setSnapshot(snap);
+        }
+        repaint();
+    }
+}
+
+
+
+
+        // Workshop
+        g.drawImage(workshopImage, workshopPoint.x, workshopPoint.y, null);
+    }
+
 }
