@@ -1,0 +1,46 @@
+import java.util.List;
+/**
+ * WorldModel samlar modellens logik och håller all state.
+ * Controller anropar endast:
+ *  - model.update()
+ *  - model.snapshot()
+ *  - model.addCar / removeCar / gas / brake / startAll / stopAll
+ */
+public class WorldModel {
+
+    private final CarManager manager = new CarManager();
+    private final MovementSystem movementSystem = new MovementSystem();
+    private final CollisionSystem collisionSystem = new CollisionSystem();
+    private final WorkshopCollisionSystem workshopCollisionSystem;
+
+    private final int panelWidth;
+    private final int spriteSize;
+
+    public WorldModel(int panelWidth, int spriteSize, Workshop<Volvo240> workshop,
+                      int workshopX, int workshopY, double radius) {
+
+        this.panelWidth = panelWidth;
+        this.spriteSize = spriteSize;
+        this.workshopCollisionSystem = new WorkshopCollisionSystem(workshopX, workshopY, radius, workshop);
+    }
+
+    public void update() {
+        movementSystem.update(manager.getCars());
+        collisionSystem.check(manager.getCars(), panelWidth, spriteSize);
+        workshopCollisionSystem.check(manager);
+    }
+
+    public List<AbstractCar> cars() {
+        return manager.getCars();
+    }
+
+    public int size() { return manager.size(); }
+
+    public void gas(double a){ manager.gasAll(a); }
+    public void brake(double a){ manager.brakeAll(a); }
+    public void startAll(){ manager.startAll(); }
+    public void stopAll(){ manager.stopAll(); }
+
+    public void addCar(AbstractCar c){ manager.addCar(c); }
+    public void removeCar(){ manager.removeLast(); }
+}
