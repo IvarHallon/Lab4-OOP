@@ -1,0 +1,21 @@
+import java.util.List;
+
+//CarFeatureService kapslar bilspecifik funktionalitet (Saab turbo, Scania flak).
+public class CarFeatureService {
+
+    public void turboOn(List<AbstractCar> cars) {
+        for (AbstractCar c : cars) if (c instanceof Saab95) ((Saab95) c).setTurboOn();
+    }
+
+    public void turboOff(List<AbstractCar> cars) {
+        for (AbstractCar c : cars) if (c instanceof Saab95) ((Saab95) c).setTurboOff();
+    }
+
+    public void liftBed(List<AbstractCar> cars) {
+        for (AbstractCar c : cars) if (c instanceof Scania) ((Scania) c).flank(10);
+    }
+
+    public void lowerBed(List<AbstractCar> cars) {
+        for (AbstractCar c : cars) if (c instanceof Scania) ((Scania) c).flank(-10);
+    }
+}
