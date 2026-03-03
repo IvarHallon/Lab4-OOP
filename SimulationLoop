@@ -1,0 +1,12 @@
+import javax.swing.*;
+
+public class SimulationLoop {
+    private final Timer timer;
+
+    public SimulationLoop(int delayMs, Runnable tickAction) {
+        this.timer = new Timer(delayMs, e -> tickAction.run());
+    }
+
+    public void start() { timer.start(); }
+    public void stop()  { timer.stop(); }
+}
